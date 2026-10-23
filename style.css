@@ -1,0 +1,527 @@
+/* =========================
+   纹见东方 · 全站基础样式
+   新中式极简风格
+========================= */
+
+:root {
+  --bg: #f7f3ec;
+  --paper: #fffdf8;
+  --ink: #292820;
+  --muted: #81796d;
+  --accent: #9b3f35;
+  --gold: #b99a64;
+  --line: #e8dfd1;
+  --shadow: 0 12px 35px rgba(55, 40, 25, 0.08);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family:
+    "Microsoft YaHei",
+    "PingFang SC",
+    "Noto Sans CJK SC",
+    sans-serif;
+  line-height: 1.8;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+.container {
+  width: min(1160px, calc(100% - 40px));
+  margin: 0 auto;
+}
+
+/* 顶部导航 */
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(255, 253, 248, 0.94);
+  border-bottom: 1px solid var(--line);
+  backdrop-filter: blur(12px);
+}
+
+.nav {
+  min-height: 76px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.logo-mark {
+  width: 38px;
+  height: 38px;
+  display: grid;
+  place-items: center;
+  color: var(--paper);
+  background: var(--accent);
+  border-radius: 50% 50% 8px 50%;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  font-size: 14px;
+}
+
+.nav-links a {
+  color: var(--muted);
+  transition: color 0.2s;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+  color: var(--accent);
+}
+
+/* 页面标题 */
+
+.page-hero {
+  padding: 76px 0 54px;
+  text-align: center;
+}
+
+.eyebrow {
+  color: var(--accent);
+  font-size: 12px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+}
+
+.page-title {
+  margin: 12px 0;
+  font-family: "Songti SC", "SimSun", serif;
+  font-size: clamp(32px, 5vw, 48px);
+  font-weight: 500;
+  letter-spacing: 4px;
+}
+
+.page-desc {
+  max-width: 650px;
+  margin: 0 auto;
+  color: var(--muted);
+  font-size: 15px;
+}
+
+/* 通用区块 */
+
+.section {
+  padding: 36px 0 72px;
+}
+
+.section-heading {
+  margin-bottom: 28px;
+}
+
+.section-heading h2 {
+  margin: 0 0 8px;
+  font-family: "Songti SC", "SimSun", serif;
+  font-size: 28px;
+  font-weight: 500;
+}
+
+.section-heading p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+/* 分类卡片 */
+
+.category-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 22px;
+}
+
+.category-card {
+  position: relative;
+  overflow: hidden;
+  padding: 28px;
+  min-height: 230px;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  box-shadow: var(--shadow);
+  transition: transform 0.25s, border-color 0.25s;
+}
+
+.category-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--gold);
+}
+
+.card-number {
+  color: var(--gold);
+  font-family: Georgia, serif;
+  font-size: 14px;
+  letter-spacing: 2px;
+}
+
+.card-symbol {
+  margin: 10px 0;
+  color: var(--accent);
+  font-family: "Songti SC", "SimSun", serif;
+  font-size: 38px;
+}
+
+.category-card h3 {
+  margin: 0 0 8px;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.category-card p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.card-link {
+  display: inline-block;
+  margin-top: 18px;
+  color: var(--accent);
+  font-size: 13px;
+}
+
+/* 纹样列表 */
+
+.pattern-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.pattern-card {
+  overflow: hidden;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  transition: transform 0.25s, box-shadow 0.25s;
+}
+
+.pattern-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow);
+}
+
+.pattern-art {
+  min-height: 160px;
+  display: grid;
+  place-items: center;
+  background:
+    radial-gradient(circle at center, #fffdf8 0, #f0e6d6 100%);
+  color: var(--accent);
+  font-family: "Songti SC", "SimSun", serif;
+  font-size: 64px;
+}
+
+.pattern-info {
+  padding: 18px;
+}
+
+.pattern-info h3 {
+  margin: 0 0 6px;
+  font-size: 17px;
+}
+
+.pattern-info p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.pattern-info .card-link {
+  margin-top: 12px;
+}
+
+/* 按钮 */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 10px 22px;
+  border: 1px solid var(--accent);
+  border-radius: 2px;
+  background: var(--accent);
+  color: white;
+  transition: background 0.2s, color 0.2s;
+}
+
+.btn:hover {
+  background: #7e3029;
+}
+
+.btn-outline {
+  background
+
+: transparent;
+  color: var(--accent);
+}
+
+.btn-outline:hover {
+  background: var(--accent);
+  color: white;
+}
+
+/* 详情页 */
+
+.detail-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+  gap: 48px;
+  align-items: start;
+}
+
+.detail-art {
+  min-height: 360px;
+  display: grid;
+  place-items: center;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  color: var(--accent);
+  font-family: "Songti SC", "SimSun", serif;
+  font-size: 110px;
+  box-shadow: var(--shadow);
+}
+
+.detail-content h1 {
+  margin-top: 0;
+  font-family: "Songti SC", "SimSun", serif;
+  font-size: 36px;
+  font-weight: 500;
+}
+
+.detail-content p {
+  color: var(--muted);
+}
+
+.info-box {
+  margin: 24px 0;
+  padding: 20px;
+  background: #f0e8dc;
+  border-left: 3px solid var(--gold);
+}
+
+.info-box h3 {
+  margin-top: 0;
+  font-size: 16px;
+}
+
+/* 创作工坊 */
+
+.studio-layout {
+  display: grid;
+  grid-template-columns: 320px minmax(0, 1fr);
+  gap: 28px;
+  align-items: start;
+}
+
+.panel {
+  padding: 24px;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow);
+}
+
+.panel h2 {
+  margin-top: 0;
+  font-size: 20px;
+}
+
+.form-group {
+  margin-bottom: 18px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 14px;
+}
+
+.form-group input,
+.form-group select {
+  width: 100%;
+  min-height: 42px;
+  padding: 8px 10px;
+  border: 1px solid var(--line);
+  border-radius: 2px;
+  background: white;
+  color: var(--ink);
+}
+
+.preview-area {
+  min-height: 440px;
+  display: grid;
+  place-items: center;
+  padding: 28px;
+  background: #eee5d7;
+}
+
+.preview-poster {
+  width: min(100%, 380px);
+  min-height: 360px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 28px;
+  text-align: center;
+  background: var(--paper);
+  border: 1px solid var(--gold);
+  box-shadow: var(--shadow);
+}
+
+.preview-symbol {
+  color: var(--accent);
+  font-size: 82px;
+}
+
+.preview-poster h2 {
+  font-family: "Songti SC", "SimSun", serif;
+  font-size: 28px;
+  letter-spacing: 3px;
+}
+
+.preview-poster p {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+/* 页脚 */
+
+.site-footer {
+  margin-top: 50px;
+  padding: 30px 0;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  text-align: center;
+  font-size: 12px;
+}
+
+/* 空状态与返回导航 */
+
+.breadcrumb {
+  margin: 20px 0;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.breadcrumb a {
+  color: var(--accent);
+}
+
+.empty-state {
+  padding: 60px 20px;
+  color: var(--muted);
+  text-align: center;
+}
+
+/* 平板适配 */
+
+@media (max-width: 900px) {
+  .category-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .pattern-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .studio-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .detail-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* 手机适配 */
+
+@media (max-width: 560px) {
+  .container {
+    width: calc(100% - 28px);
+  }
+
+  .nav {
+    align-items: flex-start;
+    flex-direction: column;
+    padding: 14px 0;
+    gap: 10px;
+  }
+
+  .nav-links {
+    width: 100%;
+    flex-wrap: wrap;
+    gap: 12px 20px;
+  }
+
+  .page-hero {
+    padding: 48px 0 32px;
+  }
+
+  .category-grid,
+  .pattern-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .category-card {
+    min-height: 190px;
+  }
+
+  .section {
+    padding: 24px 0 48px;
+  }
+
+  .detail-art {
+    min-height: 260px;
+    font-size: 80px;
+  }
+
+  .preview-area {
+    padding: 14px;
+  }
+}
