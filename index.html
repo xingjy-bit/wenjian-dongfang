@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>纹见东方｜传统纹样数字创意平台</title>
+
+  <style>
+    :root {
+      --bg: #f7f3ec;
+      --paper: #fffdf8;
+      --ink: #292820;
+      --muted: #81796d;
+      --accent: #9b3f35;
+      --gold: #b99a64;
+      --line: #e8dfd1;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family:
+        "Microsoft YaHei",
+        "PingFang SC",
+        "Noto Sans CJK SC",
+        sans-serif;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* 顶部导航 */
+
+    .navbar {
+      width: 100%;
+      height: 78px;
+      padding: 0 8%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--line);
+      background: rgba(247, 243, 236, 0.94);
+    }
+
+    .brand {
+      font-size: 25px;
+      font-weight: 700;
+      letter-spacing: 4px;
+      color: var(--accent);
+      white-space: nowrap;
+    }
+
+    .brand small {
+      display: block;
+      margin-top: 4px;
+      font-size: 9px;
+      font-weight: 400;
+      letter-spacing: 2px;
+      color: var(--muted);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 38px;
+      font-size: 14px;
+    }
+
+    .nav-links a {
+      transition: color 0.25s;
+    }
+
+    .nav-links a:hover {
+      color: var(--accent);
+    }
+
+
+    /* 首页主视觉 */
+
+    .hero {
+      min-height: 650px;
+      padding: 75px 8% 85px;
+      display: grid;
+      grid-template-columns: 1fr 0.9fr;
+      align-items: center;
+      gap: 45px;
+      overflow: hidden;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    .eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 28px;
+      color: var(--accent);
+      font-size: 12px;
+      letter-spacing: 4px;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 32px;
+      height: 1px;
+      background: var(--accent);
+    }
+
+    .hero h1 {
+      font-family:
+        "Songti SC",
+        "SimSun",
+        "Noto Serif CJK SC",
+        serif;
+      font-size: clamp(58px, 7vw, 94px);
+      font-weight: 400;
+      line-height: 1.2;
+      letter-spacing: 10px;
+      white-space: nowrap;
+    }
+
+    .hero h1 span {
+      color: var(--accent);
+    }
+
+    .hero-subtitle {
+      margin-top: 28px;
+      font-size: 21px;
+      line-height: 1.8;
+      letter-spacing: 2px;
+    }
+
+    .hero-description {
+      max-width: 450px;
+      margin-top: 18px;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 2.1;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-top: 38px;
+    }
+
+    .button {
+      min-width: 150px;
+      padding: 15px 25px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 18px;
+      font-size: 14px;
+      transition: all 0.25s;
+    }
+
+    .button-primary {
+      background: var(--accent);
+      color: #fffdf8;
+      border: 1px solid var(--accent);
+    }
+
+    .button-primary:hover {
+      background: #7e3029;
+      transform: translateY(-2px);
+    }
+
+    .button-secondary {
+      border: 1px solid var(--line);
+      color: var(--ink);
+    }
+
+    .button-secondary:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      transform: translateY(-2px);
+    }
+
+    /* 右侧东方纹样装饰 */
+
+    .hero-art {
+      min-height: 460px;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .art-glow {
+      position: absolute;
+      width: 350px;
+      height: 350px;
+      border-radius: 50%;
+      background: #eee3d3;
+      opacity: 0.55;
+    }
+
+    .art-frame {
+      position: relative;
+      width: min(100%, 410px);
+      aspect-ratio: 0.82;
+      border: 1px solid rgba(155, 63, 53, 0.45);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background:
+        linear-gradient(
+          145deg,
+          rgba(255, 253, 248, 0.8),
+          rgba(238, 227, 211, 0.5)
+        );
+    }
+
+    .art-frame::before {
+      content: "";
+      position: absolute;
+      inset: 12px;
+      border: 1px solid rgba(185, 154, 100, 0.55);
+      pointer-events: none;
+    }
+
+    .art-frame::after {
+      content: "纹 · 意";
+      position: absolute;
+      right: 26px;
+      bottom: 28px;
+      color: var(--accent);
+      font-family: "Songti SC", "SimSun", serif;
+      font-size: 17px;
+      letter-spacing: 5px;
+      writing-mode: vertical-rl;
+    }
+
+    .art-svg {
+      width: 90%;
+      max-height: 92%;
+      position: relative;
+      z-index: 1;
+      animation: appear 1.2s ease both;
+    }
+
+    @keyframes appear {
+      from {
+        opacity: 0;
+        transform: translateY(12px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* 页面底部的简洁信息 */
+
+    .bottom-line {
+      margin: 0 8%;
+      padding: 22px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 15px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 11px;
+      letter-spacing: 2px;
+    }
+
+    .bottom-line span:last-child {
+      color: var(--accent);
+    }
+
+    /* 手机端适配 */
+
+    @media (max-width: 850px) {
+      .navbar {
+        height: auto;
+        min-height: 76px;
+        padding: 18px 5%;
+        gap: 18px;
+      }
+
+      .brand {
+        font-size: 20px;
+        letter-spacing: 2px;
+      }
+
+      .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 28px;
+        font-size: 14px;
+      }
+
+      .nav-links a {
+        color: var(--muted);
+        transition: color 0.2s;
+      }
+
+      .nav-links a:hover,
+      .nav-links a.active {
+      color: var(--accent);
+      }
+
+
+      .hero {
+        grid-template-columns: 1fr;
+        padding: 65px 7% 45px;
+        gap: 30px;
+      }
+
+      .hero-content {
+        text-align: center;
+      }
+
+      .eyebrow,
+      .hero-actions {
+        justify-content: center;
+      }
+
+      .hero-description {
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .hero h1 {
+        font-size: clamp(48px, 10vw, 76px);
+        letter-spacing: 5px;
+      }
+
+      .hero-art {
+        min-height: 380px;
+      }
+
+      .art-frame {
+        max-width: 340px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .nav-links {
+        width: 100%;
+        justify-content: space-between;
+        gap: 8px;
+      }
+
+      .hero {
+        padding-top: 48px;
+      }
+
+      .hero h1 {
+        font-size: 46px;
+        letter-spacing: 3px;
+      }
+
+      .hero-subtitle {
+        font-size: 17px;
+      }
+
+      .hero-description {
+        font-size: 13px;
+      }
+
+      .hero-art {
+        min-height: 320px;
+      }
+
+      .art-frame {
+        max-width: 280px;
+      }
+
+      .bottom-line {
+        margin: 0 5%;
+        font-size: 9px;
+        letter-spacing: 1px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- 顶部导航栏 -->
+  <header class="navbar">
+    <a href="index.html" class="brand">
+      纹见东方
+    </a>
+
+    <nav class="nav-links">
+      <a href="index.html">首页</a>
+      <a href="catalog.html">纹样图鉴</a>
+      <a href="studio.html" >创作工坊 </a>
+    </nav>
+  </header>
+
+  <!-- 首页主视觉：一个完整的画面 -->
+  <main class="hero">
+
+    <section class="hero-content">
+      <div class="eyebrow">TRADITIONAL PATTERN · DIGITAL ART</div>
+
+      <h1>纹见<span>东方</span></h1>
+
+      <p class="hero-subtitle">
+        让传统纹样，在数字时代焕发新生。
+      </p>
+
+      <p class="hero-description">
+        从东方传统纹样中汲取灵感，以数字设计重新发现纹样之美。
+        在探索、理解与创作之间，开启一场传统文化与现代设计的对话。
+      </p>
+
+      <div class="hero-actions">
+        <a href="catalog.html" class="button button-primary">
+          探索纹样 <span>→</span>
+        </a>
+
+        <a href="studio.html" class="button button-secondary">
+          开始创作 <span>↗</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- 右侧装饰图案：用 SVG 绘制，不依赖外部图片 -->
+    <section class="hero-art" aria-label="东方纹样装饰">
+      <div class="art-glow"></div>
+
+      <div class="art-frame">
+        <svg
+          class="art-svg"
+          viewBox="0 0 360 440"
+          xmlns="
+http://www.w3.org/2000/svg
+"
+          role="img"
+          aria-label="东方花枝装饰图案"
+        >
+          <defs>
+            <linearGradient id="branchColor" x1="0" y1="1" x2="1" y2="0">
+              <stop offset="0%" stop-color="#7c342c"/>
+              <stop offset="100%" stop-color="#b99a64"/>
+            </linearGradient>
+
+            <g id="petal">
+              <path
+                d="M 0,0
+                   C -23,-18 -23,-47 0,-59
+                   C 23,-47 23,-18 0,0 Z"
+                fill="#9b3f35"
+                fill-opacity="0.88"
+                stroke="#7e3029"
+                stroke-width="1"
+              />
+              <path
+                d="M 0,-7 Q 0,-31 0,-49"
+                fill="none"
+                stroke="#e8c5a7"
+                stroke-width="1.3"
+              />
+            </g>
+
+            <g id="flower">
+              <use href="#petal" transform="rotate(0)"/>
+              <use href="#petal" transform="rotate(72)"/>
+              <use href="#petal" transform="rotate(144)"/>
+              <use href="#petal" transform="rotate(216)"/>
+              <use href="#petal" transform="rotate(288)"/>
+
+              <circle r="8" fill="#d2b174"/>
+              <circle r="3" fill="#7e3029"/>
+            </g>
+          </defs>
+
+          <!-- 外围装饰圆环 -->
+          <circle
+            cx="180" cy="210" r="132"
+            fill="none"
+            stroke="#b99a64"
+            stroke-width="1"
+            stroke-dasharray="2 7"
+            opacity="0.85"
+          />
+
+          <circle
+            cx="180" cy="210" r="115"
+            fill="none"
+            stroke="#9b3f35"
+            stroke-width="0.8"
+            opacity="0.35"
+          />
+
+          <!-- 花枝 -->
+          <path
+            d="M 95,365
+               C 130,315 135,275 174,232
+               C 203,198 235,162 252,90"
+            fill="none"
+            stroke="url(#branchColor)"
+            stroke-width="5"
+            stroke-linecap="round"
+          />
+
+          <path
+            d="M 143,285
+               C 107,260 87,238 78,210"
+            fill="none"
+            stroke="#8c4938"
+            stroke-width="3"
+            stroke-linecap="round"
+          />
+
+          <path
+            d="M 178,230
+               C 220,242 245,235 273,214"
+            fill="none"
+            stroke="#8c4938"
+            stroke-width="3"
+            stroke-linecap="round"
+          />
+
+          <!-- 叶片 -->
+          <path
+            d="M 119,273
+               C 79,278 63,256 61,232
+               C 91,234 113,247 119,273 Z"
+            fill="#73816a"
+            fill-opacity="0.9"
+          />
+
+          <path
+            d="M 207,218
+               C 218,182 250,175 270,185
+               C 254,208 235,219 207,218 Z"
+            fill="#73816a"
+            fill-opacity="0.9"
+          />
+
+          <path
+            d="M 235,148
+               C 225,117 239,94 258,82
+               C 267,107 259,131 235,148 Z"
+            fill="#73816a"
+            fill-opacity="0.9"
+          />
+
+          <!-- 花朵 -->
+          <use href="#flower" transform="translate(252 88) scale(0.78)"/>
+          <use href="#flower" transform="translate(170 226) scale(0.92)"/>
+          <use href="#flower" transform="translate(80 210) scale(0.65)"/>
+
+          <!-- 花苞 -->
+          <path
+            d="M 138,289
+               C 118,270 123,251 140,245
+               C 154,260 152,278 138,289 Z"
+            fill="#9b3f35"
+          />
+
+          <path
+            d="M 139,286 L 143,300"
+            stroke="#73816a"
+            stroke-width="2"
+            stroke-linecap="round"
+          />
+
+          <!-- 小型装饰圆点 -->
+          <circle cx="90" cy="135" r="3" fill="#b99a64"/>
+          <circle cx="282" cy="300" r="4" fill="#9b3f35"/>
+          <circle cx="111" cy="340" r="2.5" fill="#b99a64"/>
+
+          <!-- 角落印章 -->
+          <rect
+            x="262" y="340" width="38" height="38"
+            fill="none"
+            stroke="#9b3f35"
+            stroke-width="1.3"
+          />
+
+          <text
+            x="281" y="365"
+            font-family="serif"
+            font-size="19"
+            text-anchor="middle"
+            fill="#9b3f35"
+          >纹</text>
+
+        </svg>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- 简洁的页面底部信息，不额外拆分功能框架 -->
+  <footer class="bottom-line">
+    <span>中国传统纹样 · 数字创意设计</span>
+    <span>探索传统之美 · 发现设计新意</span>
+  </footer>
+
+</body>
+</html>

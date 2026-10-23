@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>纹样详情｜纹见东方</title>
+
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+  <!-- 顶部导航 -->
+  <header class="site-header">
+    <div class="container nav">
+
+      <a href="index.html" class="logo">
+        <span class="logo-mark">纹</span>
+        <span>纹见东方</span>
+      </a>
+
+      <nav class="nav-links">
+        <a href="index.html">首页</a>
+        <a href="catalog.html" class="active">纹样图鉴</a>
+        <a href="studio.html">创作工坊</a>
+      </nav>
+
+    </div>
+  </header>
+
+
+  <!-- 页面标题 -->
+  <section class="page-hero">
+    <div class="container">
+
+      <div class="eyebrow">PATTERN STORY</div>
+
+      <h1 class="page-title" id="patternTitle">
+        纹样详情
+      </h1>
+
+      <p class="page-desc" id="patternSubtitle">
+        探索中国传统纹样的形态与装饰之美。
+      </p>
+
+    </div>
+  </section>
+
+
+  <!-- 纹样详情 -->
+  <main class="section">
+    <div class="container">
+
+      <div class="breadcrumb">
+        <a href="index.html">首页</a>
+        /
+        <a href="catalog.html">纹样图鉴</a>
+        /
+        <a href="#" id="categoryLink">纹样分类</a>
+        /
+        <span id="breadcrumbName">纹样详情</span>
+      </div>
+
+
+      <div class="detail-layout" id="detailLayout">
+
+        <!-- 左侧：纹样视觉展示 -->
+<div class="detail-art">
+  <div style="text-align:center; width:100%;">
+
+    <div
+      id="patternSymbol"
+      style="
+        width:100%;
+        max-width:360px;
+        aspect-ratio:1 / 1;
+        margin:0 auto;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+      "
+    >
+      <span>纹</span>
+    </div>
+
+    <div style="
+      margin-top:20px;
+      font-size:12px;
+      letter-spacing:4px;
+      color:#81796d;
+    ">
+      TRADITIONAL PATTERN
+    </div>
+
+    <p id="patternImageCaption" style="
+      margin-top:10px;
+      font-size:13px;
+      color:#81796d;
+      letter-spacing:2px;
+    ">
+      中国传统纹样数字档案
+    </p>
+
+  </div>
+</div>
+
+
+        <!-- 右侧：纹样介绍 -->
+        <div class="detail-content">
+
+          <div class="eyebrow" id="categoryLabel">
+            TRADITIONAL PATTERN
+          </div>
+
+          <h1 id="detailName">纹样名称</h1>
+
+          <p id="detailDescription">
+            纹样介绍将在这里显示。
+          </p>
+
+
+          <div class="info-box">
+            <h3>形态特征</h3>
+
+            <p id="visualDescription">
+              纹样的主要视觉特征。
+            </p>
+          </div>
+
+
+          <div class="info-box">
+            <h3>图案元素</h3>
+
+            <p id="meaningDescription">
+              纹样的主要装饰元素。
+            </p>
+          </div>
+          <!-- 文化解读 -->
+          <div class="info-box">
+             <h3>文化解读 · CULTURAL CONTEXT</h3>
+             <p id="cultureDescription">
+             纹样的文化背景与传统寓意将在这里显示。
+             </p>
+           </div>
+           <!-- 当代设计转译 -->
+            <div class="info-box">
+            <h3>当代设计转译 · CONTEMPORARY DESIGN</h3>
+            <p id="designDescription">
+            纹样在当代视觉设计中的应用将在这里显示。
+            </p>
+</div>
+          <div style="
+            display:flex;
+            flex-wrap:wrap;
+            gap:12px;
+            margin-top:28px;
+          ">
+
+            <a href="catalog.html" class="btn btn-outline">
+              返回纹样图鉴
+            </a>
+
+            <a id="createPatternBtn" href="studio.html" class="btn">
+  使用此纹样进行创作 →
+</a>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- 未找到纹样时显示 -->
+      <div class="empty-state" id="emptyMessage" hidden>
+
+        <h2>暂未找到这个纹样</h2>
+
+        <p>
+          请返回纹样图鉴，重新选择一个纹样。
+        </p>
+
+        <a href="catalog.html" class="btn btn-outline">
+          返回纹样图鉴
+        </a>
+
+      </div>
+
+    </div>
+  </main>
+
+
+  <!-- 页脚 -->
+  <footer class="site-footer">
+    <div class="container">
+      纹见东方 · 中国传统纹样数字创意平台
+    </div>
+  </footer>
+
+
+  <!-- 载入纹样数据 -->
+  <script src="js/data.js"></script>
+
+  <script>
+    // 获取网址中的纹样编号
+    const params = new URLSearchParams(window.location.search);
+
+    const patternId = params.get("id");
+
+    // 查找纹样
+    const pattern = getPatternById(patternId);
+
+
+    // 获取页面元素
+    const detailLayout = document.getElementById("detailLayout");
+
+    const emptyMessage = document.getElementById("emptyMessage");
+
+    const patternTitle = document.getElementById("patternTitle");
+
+    const patternSubtitle = document.getElementById("patternSubtitle");
+
+    const breadcrumbName = document.getElementById("breadcrumbName");
+
+    const categoryLink = document.getElementById("categoryLink");
+
+    const categoryLabel = document.getElementById("categoryLabel");
+
+    const detailName = document.getElementById("detailName");
+
+    const detailDescription = document.getElementById("detailDescription");
+
+    const patternSymbol = document.getElementById("patternSymbol");
+
+    const visualDescription = document.getElementById("visualDescription");
+
+    const meaningDescription = document.getElementById("meaningDescription");
+
+    const createPatternBtn = document.getElementById("createPatternBtn");
+    if (pattern) {
+
+      // 设置页面标题
+      document.title = 
+pattern.name
+ + "｜纹见东方";
+
+      patternTitle.textContent = pattern.name;
+
+      detailName.textContent = pattern.name;
+
+      patternSubtitle.textContent =
+        pattern.categoryName + " · 传统纹样";
+
+      breadcrumbName.textContent = pattern.name;
+
+      categoryLabel.textContent = pattern.categoryName;
+
+      // 显示纹样文字介绍
+      detailDescription.textContent = pattern.description;
+
+      visualDescription.textContent = pattern.visual;
+
+      meaningDescription.textContent = pattern.meaning;
+
+      // 显示文化档案内容
+const cultureDescription = document.getElementById("cultureDescription");
+const designDescription = document.getElementById("designDescription");
+
+const archive = patternArchives[pattern.id];
+
+if (cultureDescription) {
+  cultureDescription.textContent = archive
+    ? archive.culture
+    : "该纹样的文化解读正在整理中。";
+}
+
+if (designDescription) {
+  designDescription.textContent = archive
+    ? archive.design
+    : "该纹样的当代设计转译正在整理中。";
+}
+
+      // 根据纹样 ID 匹配真实图片
+const imageFiles = {
+  meihua: "meihua.png",
+  lanhua: "lanhua.png",
+  zhu: "zhuzi.png",
+  juhua: "juhua.png",
+
+  yunwen: "yunwen.png",
+  huiwen: "huiwen.png",
+  ruyi: "ruyi.png",
+  wanzi: "wanzi.png",
+
+  chiwen: "chiwen.png",
+  longwen: "longwen.png",
+  fengwen: "fengwen.png",
+  qilin: "qilin.png",
+
+  shidi: "shidi.png",
+  hulu: "hulu.png",
+  jiaoye: "jiaoye.png",
+  shiliu: "shiliu.png",
+
+  niaowen: "niaowen.png",
+  diewen: "diewen.png",
+  hewen: "hewen.png",
+  yuanyang: "yuanyang.png",
+
+  jiwen: "jiwen.png",
+  yuwen: "yuwen.png",
+  luwen: "luwen.png",
+  shiwen: "shiwen.png"
+};
+
+// 读取当前纹样对应的图片
+const imageFile = imageFiles[pattern.id];
+
+if (imageFile) {
+  const img = document.createElement("img");
+
+  img.src = "images/patterns/" + imageFile;
+  img.alt = 
+pattern.name
+ + "传统纹样";
+
+  img.style.width = "100%";
+  img.style.height = "100%";
+  img.style.objectFit = "contain";
+  img.style.display = "block";
+
+  // 图片读取失败时显示提示
+  img.onerror = function () {
+    patternSymbol.innerHTML = "";
+    const fallback = document.createElement("span");
+    fallback.textContent = pattern.symbol || "纹";
+    patternSymbol.appendChild(fallback);
+
+    console.error("纹样图片读取失败：", img.src);
+  };
+
+  patternSymbol.innerHTML = "";
+  patternSymbol.appendChild(img);
+} else {
+  patternSymbol.textContent = pattern.symbol || "纹";
+}
+
+      // 设置返回对应类别的链接
+      categoryLink.textContent = pattern.categoryName;
+
+      categoryLink.href =
+        "category.html?id=" +
+        encodeURIComponent(pattern.categoryId);
+     // 将当前纹样传递给创作工坊
+createPatternBtn.href =
+  "studio.html?id=" + encodeURIComponent(pattern.id);   
+
+    } else {
+
+      // 找不到纹样时显示提示
+      detailLayout.hidden = true;
+
+      emptyMessage.hidden = false;
+
+      patternTitle.textContent = "暂未找到该纹样";
+
+      patternSubtitle.textContent =
+        "请返回图鉴，重新选择一个传统纹样。";
+
+      breadcrumbName.textContent = "未找到纹样";
+
+    }
+  </script>
+
+</body>
+</html>

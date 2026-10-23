@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>创作工坊｜纹见东方</title>
+
+  <link rel="stylesheet" href="css/style.css">
+
+  <style>
+    .studio-intro {
+      margin-bottom: 30px;
+    }
+
+    .studio-controls {
+      display: grid;
+      gap: 20px;
+    }
+
+    .option-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .option-btn {
+      padding: 8px 14px;
+      border: 1px solid var(--line);
+      background: white;
+      color: var(--ink);
+      border-radius: 2px;
+      cursor: pointer;
+    }
+
+    .option-btn.active {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: #f8eee9;
+    }
+
+    .color-option {
+      width: 38px;
+      height: 38px;
+      border: 3px solid white;
+      outline: 1px solid var(--line);
+      border-radius: 50%;
+      cursor: pointer;
+    }
+
+    .color-option.active {
+      outline: 2px solid var(--accent);
+    }
+
+    .studio-workspace {
+      display: grid;
+      grid-template-columns: minmax(260px, 340px) minmax(0, 1fr);
+      gap: 28px;
+      align-items: start;
+    }
+
+    .studio-panel {
+      padding: 24px;
+      background: var(--paper);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+    }
+
+    .studio-panel h2 {
+      margin-top: 0;
+      font-size: 20px;
+    }
+
+    .studio-field {
+      margin-bottom: 22px;
+    }
+
+    .studio-field label {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 14px;
+    }
+
+    .studio-field input {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid var(--line);
+      background: white;
+    }
+
+    .poster-stage {
+      min-height: 560px;
+      display: grid;
+      place-items: center;
+      padding: 30px;
+      background: #eee5d7;
+    }
+
+    .poster {
+      --poster-bg: #fffdf8;
+      --poster-ink: #292820;
+      --poster-accent: #9b3f35;
+
+      position: relative;
+      overflow: hidden;
+      width: min(100%, 420px);
+      min-height: 490px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 34px 24px;
+      text-align: center;
+      background: var(--poster-bg);
+      color: var(--poster-ink);
+      border: 1px solid #b99a64;
+      box-shadow: 0 15px 40px rgba(55, 40, 25, 0.12);
+    }
+
+    .poster::before {
+      content: "";
+      position: absolute;
+      inset: 12px;
+      border: 1px solid rgba(185, 154, 100, 0.6);
+      pointer-events: none;
+    }
+
+    .poster-kicker {
+      position: relative;
+      color: var(--poster-accent);
+      font-size: 11px;
+      letter-spacing: 4px;
+    }
+
+    .poster-symbol {
+      position: relative;
+      width: 190px;
+      height: 190px;
+      display: grid;
+      place-items: center;
+      margin: 22px 0;
+      color: var(--poster-accent);
+    }
+
+    .poster-symbol svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    .poster-title {
+      position: relative;
+      margin: 0;
+      font-family: "Songti SC", "SimSun", serif;
+      font-size: 32px;
+      font-weight: 500;
+      letter-spacing: 5px;
+    }
+
+    .poster-description {
+      position: relative;
+      max-width: 260px;
+      margin: 12px 0 0;
+      color: var(--poster-ink);
+      opacity: 0.72;
+      font-size: 12px;
+      letter-spacing: 1px;
+    }
+
+    .poster-footer {
+      position: relative;
+      margin-top: 30px;
+      color: var(--poster-accent);
+      font-size: 10px;
+      letter-spacing: 3px;
+    }
+
+    .studio-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    .studio-tip {
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    @media (max-width: 760px) {
+      .studio-workspace {
+        grid-template-columns: 1fr;
+      }
+
+      .poster-stage {
+        min-height: 500px;
+        padding: 16px;
+      }
+
+      .poster {
+        min-height: 440px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- 顶部导航 -->
+  <header class="site-header">
+    <div class="container nav">
+
+      <a href="index.html" class="logo">
+        <span class="logo-mark">纹</span>
+        <span>纹见东方</span>
+      </a>
+
+      <nav class="nav-links">
+        <a href="index.html">首页</a>
+        <a href="catalog.html">纹样图鉴</a>
+        <a href="studio.html" class="active">创作工坊</a>
+      </nav>
+
+    </div>
+  </header>
+
+
+  <!-- 页面标题 -->
+  <section class="page-hero">
+    <div class="container">
+
+      <div class="eyebrow">DIGITAL CREATIVE STUDIO</div>
+
+      <h1 class="page-title">纹样创作工坊</h1>
+
+      <p class="page-desc">
+        选择传统纹样，搭配色彩与文字，
+        将传统视觉元素转化为个人数字作品。
+      </p>
+
+    </div>
+  </section>
+
+
+  <!-- 创作区域 -->
+  <main class="section">
+    <div class="container">
+
+      <div class="studio-intro">
+        <div class="section-heading">
+          <h2>开始你的创作</h2>
+          <p>调整左侧选项，右侧作品会同步更新。</p>
+        </div>
+      </div>
+
+
+      <div class="studio-workspace">
+
+        <!-- 左侧控制面板 -->
+        <section class="studio-panel">
+
+          <h2>创作设置</h2>
+
+          <div class="studio-controls">
+
+            <div class="studio-field">
+              <label for="patternSelect">① 选择传统纹样</label>
+
+              <select id="patternSelect"
+                style="width:100%;padding:10px;border:1px solid var(--line);">
+
+              </select>
+            </div>
+
+
+            <div class="studio-field">
+              <label for="titleInput">② 编辑作品标题</label>
+
+              <input
+                type="text"
+                id="titleInput"
+                maxlength="24"
+                value="东方纹意"
+                placeholder="输入作品标题">
+            </div>
+
+
+            <div class="studio-field">
+              <label>③ 选择配色方案</label>
+
+              <div class="option-list">
+
+                <button
+                  class="color-option active"
+                  type="button"
+                  data-color="vermilion"
+                  title="朱砂雅韵"
+                  style="background:linear-gradient(135deg,#9b3f35 50%,#f7f3ec 50%);">
+                </button>
+
+                <button
+                  class="color-option"
+                  type="button"
+                  data-color="pine"
+                  title="松青古意"
+                  style="background:linear-gradient(135deg,#536b58 50%,#f4f0e5 50%);">
+                </button>
+
+                <button
+                  class="color-option"
+                  type="button"
+                  data-color="ink"
+                  title="水墨清韵"
+                  style="background:linear-gradient(135deg,#343a40 50%,#e8e2d7 50%);">
+                </button>
+
+                <button
+                  class="color-option"
+                  type="button"
+                  data-color="blue"
+                  title="青花雅集"
+                  style="background:linear-gradient(135deg,#426b8c 50%,#f5f0e6 50%);">
+                </button>
+
+              </div>
+            </div>
+
+
+            <div class="studio-field">
+              <label for="subtitleInput">④ 编辑作品副标题</label>
+
+              <input
+                type="text"
+                id="subtitleInput"
+                maxlength="40"
+                value="传统纹样 · 数字转译"
+                placeholder="输入作品副标题">
+            </div>
+
+          </div>
+
+          <div class="studio-actions">
+
+            <button
+              class="btn"
+              type="button"
+              id="downloadBtn">
+              导出 SVG 作品
+            </button>
+
+            <button
+              class="btn btn-outline"
+              type="button"
+              id="resetBtn">
+              恢复默认
+            </button>
+
+          </div>
+
+          <p class="studio-tip">
+            提示：SVG 是一种可放大而不易失真的矢量图形格式。
+          </p>
+
+        </section>
+
+
+        <!-- 右侧作品预览 -->
+        <section>
+
+          <div class="poster-stage">
+
+            <article class="poster" id="poster">
+
+              <div class="poster-kicker">
+                CHINESE PATTERN DESIGN
+              </div>
+
+              <div class="poster-symbol" id="posterSymbol"></div>
+
+              <h2 class="poster-title" id="posterTitle">
+                东方纹意
+              </h2>
+
+              <p class="poster-description" id="posterDesc">
+                传统纹样 · 数字转译
+              </p>
+
+              <div class="poster-footer">
+                纹见东方
+              </div>
+
+            </article>
+
+          </div>
+
+          <p class="studio-tip">
+            作品预览 · 可通过左侧选项实时调整
+          </p>
+
+        </section>
+
+      </div>
+
+    </div>
+  </main>
+
+
+  <!-- 页脚 -->
+  <footer class="site-footer">
+    <div class="container">
+      纹见东方 · 中国传统纹样数字创意平台
+    </div>
+  </footer>
+
+
+  <!-- 载入纹样数据 -->
+  <script src="js/data.js"></script>
+
+  <script>
+    const patternSelect = document.getElementById("patternSelect");
+    const titleInput = document.getElementById("titleInput");
+    const subtitleInput = document.getElementById("subtitleInput");
+    const poster = document.getElementById("poster");
+    const posterSymbol = document.getElementById("posterSymbol");
+    const posterTitle = document.getElementById("posterTitle");
+    const posterDesc = document.getElementById("posterDesc");
+    const downloadBtn = document.getElementById("downloadBtn");
+    const resetBtn = document.getElementById("resetBtn");
+
+    const palettes = {
+      vermilion: {
+        bg: "#fffdf8",
+        ink: "#292820",
+        accent: "#9b3f35"
+      },
+      pine: {
+        bg: "#f4f0e5",
+        ink: "#29382f",
+        accent: "#536b58"
+      },
+      ink: {
+        bg: "#e8e2d7",
+        ink: "#343a40",
+        accent: "#343a40"
+      },
+      blue: {
+        bg: "#f5f0e6",
+        ink: "#263c53",
+        accent: "#426b8c"
+      }
+    };
+
+    let currentPalette = "vermilion";
+
+
+    // 生成简洁的装饰性 SVG 图形
+    function createPatternSVG(name, color) {
+
+      const commonStart = `
+        <svg xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 200 200">
+          <g fill="none" stroke="${color}"
+            stroke-width="2.5"
+            stroke-linecap="round"
+            stroke-linejoin="round">
+      `;
+
+      let shape = "";
+
+      if (name.includes("云")) {
+
+        shape = `
+          <path d="M36 112
+            C18 108 20 83 40 80
+            C40 57 68 52 81 69
+            C97 43 132 51 136 75
+            C161 68 178 91 164 109
+            C156 120 143 120 131 119
+            L59 119
+            C49 119 41 117 36 112Z"/>
+          <path d="M57 132 C77 145 116 145 137 132"/>
+          <path d="M70 147 C89 156 109 156 126 147"/>
+        `;
+
+      } else if (name.includes("回") || name.includes("万")) {
+
+        shape = `
+          <path d="M45 45 H155 V155 H45 Z"/>
+          <path d="M62 62 H138 V138 H62 Z"/>
+          <path d="M45 82 H82 V45"/>
+          <path d="M118 45 V82 H155"/>
+          <path d="M45 118 H82 V155"/>
+          <path d="M118 155 V118 H155"/>
+        `;
+
+      } else if (name.includes("莲") || name.includes("荷")) {
+
+        shape = `
+          <path d="M100 154 C67 124 63 87 100 53
+            C137 87 133 124 100 154Z"/>
+          <path d="M100 154 C45 143 35 113 48 91
+            C70 100 88 124 100 154Z"/>
+          <path d="M100 154 C155 143 165 113 152 91
+            C130 100 112 124 100 154Z"/>
+          <path d="M65 165 Q100 145 135 165"/>
+          <path d="M75 175 Q100 164 125 175"/>
+        `;
+
+      } else if (name.includes("梅")) {
+
+        shape = `
+          <path d="M48 145 Q85 108 111 64 Q130 46 148 58"/>
+          <path d="M83 112 Q55 91 40 101"/>
+          <path d="M106 75 Q132 85 151 75"/>
+          <g>
+            <circle cx="111" cy="64" r="7"/>
+            <circle cx="101" cy="52" r="7"/>
+            <circle cx="122" cy="50" r="7"/>
+            <circle cx="128" cy="66" r="7"/>
+            <circle cx="106" cy="76" r="7"/>
+          </g>
+          <g>
+            <circle cx="40" cy="101" r="6"/>
+            <circle cx="32" cy="91" r="6"/>
+            <circle cx="46" cy="87" r="6"/>
+            <circle cx="52" cy="101" r="6"/>
+            <circle cx="37" cy="112" r="6"/>
+          </g>
+        `;
+
+      } else {
+
+        shape = `
+          <circle cx="100" cy="100" r="57"/>
+          <circle cx="100" cy="100" r="44"/>
+          <path d="M100 53 L113 87 L149 88
+            L121 110 L131 145
+            L100 125 L69 145
+            L79 110 L51 88
+            L87 87 Z"/>
+          <circle cx="100" cy="100" r="13"/>
+        `;
+
+      }
+
+      return commonStart + shape + "</g></svg>";
+    }
+
+
+    // 把全部纹样加入下拉菜单
+    patternCategories.forEach(category => {
+
+      const group = document.createElement("optgroup");
+
+      group.label = category.name;
+
+      category.patterns.forEach(pattern => {
+
+        const option = document.createElement("option");
+
+        option.value = pattern.id;
+        option.textContent = pattern.name;
+
+        group.appendChild(option);
+
+      });
+
+      patternSelect.appendChild(group);
+
+    });
+
+
+    // 更新作品预览
+function updatePreview() {
+
+  const pattern = getPatternById(patternSelect.value);
+
+  if (!pattern) return;
+
+  const palette = palettes[currentPalette];
+
+  poster.style.setProperty("--poster-bg", palette.bg);
+  poster.style.setProperty("--poster-ink", palette.ink);
+  poster.style.setProperty("--poster-accent", palette.accent);
+
+ const imageFiles = {
+  meihua: "meihua.png",
+  lanhua: "lanhua.png",
+  zhu: "zhuzi.png",
+  juhua: "juhua.png",
+
+  yunwen: "yunwen.png",
+  huiwen: "huiwen.png",
+  ruyi: "ruyi.png",
+  wanzi: "wanzi.png",
+
+  chiwen: "chiwen.png",
+  longwen: "longwen.png",
+  fengwen: "fengwen.png",
+  qilin: "qilin.png",
+
+  shidi: "shidi.png",
+  hulu: "hulu.png",
+  jiaoye: "jiaoye.png",
+  shiliu: "shiliu.png",
+
+  niaowen: "niaowen.png",
+  diewen: "diewen.png",
+  hewen: "hewen.png",
+  yuanyang: "yuanyang.png",
+
+  jiwen: "jiwen.png",
+  yuwen: "yuwen.png",
+  luwen: "luwen.png",
+  shiwen: "shiwen.png"
+};
+
+const imageFile = imageFiles[pattern.id];
+
+if (imageFile) {
+  posterSymbol.innerHTML = `
+    <img
+      src="images/patterns/${imageFile}"
+      alt="${
+pattern.name
+}"
+      style="width:100%;height:100%;object-fit:contain;"
+    >
+  `;
+} else {
+  posterSymbol.innerHTML =
+    createPatternSVG(pattern.name, palette.accent);
+}
+
+  posterTitle.textContent =
+    titleInput.value.trim() || "东方纹意";
+
+  posterDesc.textContent =
+    subtitleInput.value.trim() || 
+pattern.name
+ + " · 传统纹样";
+
+}
+
+
+    // 切换纹样、标题和副标题
+    patternSelect.addEventListener("change", updatePreview);
+
+    titleInput.addEventListener("input", updatePreview);
+
+    subtitleInput.addEventListener("input", updatePreview);
+
+
+    // 切换配色
+    document.querySelectorAll(".color-option").forEach(button => {
+
+      button.addEventListener("click", () => {
+
+        currentPalette = button.dataset.color;
+
+        document.querySelectorAll(".color-option").forEach(item => {
+          item.classList.remove("active");
+        });
+
+        button.classList.add("active");
+
+        updatePreview();
+
+      });
+
+    });
+
+
+    // 恢复默认
+    resetBtn.addEventListener("click", () => {
+
+      patternSelect.value = "meihua";
+      titleInput.value = "东方纹意";
+      subtitleInput.value = "传统纹样 · 数字转译";
+
+      currentPalette = "vermilion";
+
+      document.querySelectorAll(".color-option").forEach(button => {
+        button.classList.toggle(
+          "active",
+          button.dataset.color === "vermilion"
+        );
+      });
+
+      updatePreview();
+
+    });
+
+
+    // 导出 SVG 作品
+    // 导出 SVG 作品
+downloadBtn.addEventListener("click",async () => {
+  const pattern = getPatternById(patternSelect.value);
+
+  if (!pattern) return;
+
+  const palette = palettes[currentPalette];
+
+  const title =
+    titleInput.value.trim() || "东方纹意";
+
+  const subtitle =
+    subtitleInput.value.trim() || pattern.name + " · 传统纹样";
+
+ // 根据纹样 ID 匹配真实图片
+  const imageFiles = {
+    meihua: "meihua.png",
+    lanhua: "lanhua.png",
+    zhu: "zhuzi.png",
+    juhua: "juhua.png",
+
+    yunwen: "yunwen.png",
+    huiwen: "huiwen.png",
+    ruyi: "ruyi.png",
+    wanzi: "wanzi.png",
+
+    chiwen: "chiwen.png",
+    longwen: "longwen.png",
+    fengwen: "fengwen.png",
+    qilin: "qilin.png",
+
+    shidi: "shidi.png",
+    hulu: "hulu.png",
+    jiaoye: "jiaoye.png",
+    shiliu: "shiliu.png",
+
+    niaowen: "niaowen.png",
+    diewen: "deiwen.png",
+    hewen: "hewen.png",
+    yuanyang: "yuanyang.png",
+
+    jiwen: "jiwen.png",
+    yuwen: "yuwen.png",
+    luwen: "luwen.png",
+    shiwen: "shiwen.png"
+  };
+
+  const imageFile = imageFiles[pattern.id];
+
+  if (!imageFile) {
+    alert("暂时没有找到该纹样对应的图片：" + pattern.name);
+    return;
+  }
+
+  try {
+    const response = await fetch(
+      "images/patterns/" + imageFile
+    );
+
+    if (!response.ok) {
+      throw new Error("无法读取图片：" + imageFile);
+    }
+
+    const imageBlob = await response.blob();
+
+    const imageDataURL = await new Promise((resolve, reject) => {
+      const reader = new FileReader();
+
+      reader.onload = () => resolve(reader.result);
+      reader.onerror = reject;
+
+      reader.readAsDataURL(imageBlob);
+    });
+
+    motifContent = `
+      <image
+        x="0"
+        y="0"
+        width="200"
+        height="200"
+        preserveAspectRatio="xMidYMid meet"
+        href="${imageDataURL}"
+      />
+    `;
+  } catch (error) {
+    alert(
+      "读取纹样图片失败：" + imageFile +
+      "。请检查图片文件名和路径。"
+    );
+
+    console.error(error);
+    return;
+  }
+
+  // 构建完整的海报 SVG
+  const exportSVG = `
+<svg xmlns="http://www.w3.org/2000/svg"
+     width="800"
+     height="1000"
+     viewBox="0 0 800 1000">
+
+  <rect width="800" height="1000"
+        fill="${escapeXML(palette.bg)}"/>
+
+  <rect x="36" y="36" width="728" height="928"
+        fill="none"
+        stroke="${escapeXML(palette.accent)}"
+        stroke-opacity="0.45"
+        stroke-width="1.5"/>
+
+  <text x="400" y="115"
+        text-anchor="middle"
+        font-family="sans-serif"
+        font-size="20"
+        letter-spacing="6"
+        fill="${escapeXML(palette.ink)}">CHINESE PATTERN DESIGN</text>
+
+  <g transform="translate(200 180) scale(2)">
+    ${motifContent}
+  </g>
+
+  <text x="400" y="780"
+        text-anchor="middle"
+        font-family="sans-serif"
+        font-size="42"
+        fill="${escapeXML(palette.ink)}">${escapeXML(title)}</text>
+
+  <text x="400" y="835"
+        text-anchor="middle"
+        font-family="sans-serif"
+        font-size="20"
+        fill="${escapeXML(palette.accent)}">${escapeXML(subtitle)}</text>
+
+  <line x1="280" y1="870" x2="520" y2="870"
+        stroke="${escapeXML(palette.accent)}"
+        stroke-width="1.5"/>
+
+</svg>`;
+
+  // 创建 SVG 文件并下载
+  const blob = new Blob(
+    [exportSVG],
+    { type: "image/svg+xml;charset=utf-8" }
+  );
+
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement("a");
+
+  link.href = url;
+  link.download = "东方纹意-" + pattern.name + ".svg";
+
+  document.body.appendChild(link);
+  link.click();
+  link.remove();
+
+  // 延迟释放下载地址
+  setTimeout(() => URL.revokeObjectURL(url), 1000);
+});
+
+
+    // 转义标题中的特殊字符，避免破坏 SVG
+    function escapeXML(text) {
+
+      return String(text).replace(/[<>&'"]/g, char => {
+
+        const entities = {
+          "<": "&lt;",
+          ">": "&gt;",
+          "&": "&amp;",
+          "'": "&apos;",
+          '"': "&quot;"
+        };
+
+        return entities[char];
+
+      });
+
+    }
+
+
+    // 初始显示
+    patternSelect.value = "meihua";
+
+    updatePreview();
+
+  </script>
+
+</body>
+</html>

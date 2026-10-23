@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>纹样图鉴｜纹见东方</title>
+
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+  <!-- 顶部导航 -->
+  <header class="site-header">
+    <div class="container nav">
+
+      <a href="index.html" class="logo">
+        <span class="logo-mark">纹</span>
+        <span>纹见东方</span>
+      </a>
+
+      <nav class="nav-links">
+        <a href="index.html">首页</a>
+        <a href="catalog.html" class="active">纹样图鉴</a>
+        <a href="studio.html">创作工坊</a>
+      </nav>
+
+    </div>
+  </header>
+
+
+  <!-- 页面标题 -->
+  <section class="page-hero">
+    <div class="container">
+
+      <div class="eyebrow">CHINESE PATTERN ATLAS</div>
+
+      <h1 class="page-title">传统纹样图鉴</h1>
+
+      <p class="page-desc">
+        从花木草叶到飞禽走兽，从自然形态到几何构成，
+        走进中国传统纹样的视觉世界。
+      </p>
+
+    </div>
+  </section>
+
+
+  <!-- 六大类别 -->
+  <main class="section">
+    <div class="container">
+
+      <div class="section-heading">
+        <h2>探索纹样类别</h2>
+        <p>选择一个类别，继续探索其中的传统纹样。</p>
+      </div>
+
+      <div class="category-grid" id="categoryGrid">
+
+        <!-- 类别卡片由 JavaScript 自动生成 -->
+
+      </div>
+
+    </div>
+  </main>
+
+
+  <!-- 页脚 -->
+  <footer class="site-footer">
+    <div class="container">
+      纹见东方 · 中国传统纹样数字创意平台
+    </div>
+  </footer>
+
+
+  <!-- 加载纹样数据 -->
+  <script src="js/data.js"></script>
+
+  <script>
+    const categoryGrid = document.getElementById("categoryGrid");
+
+    patternCategories.forEach((category, index) => {
+
+      const card = document.createElement("a");
+
+      card.className = "category-card";
+
+      card.href =
+        "category.html?id=" +
+        encodeURIComponent(category.id);
+
+      card.innerHTML = `
+        <div class="card-number">
+          NO. ${String(index + 1).padStart(2, "0")}
+        </div>
+
+        <div class="card-symbol">
+          ${category.symbol}
+        </div>
+
+        <h3>${
+category.name
+}</h3>
+
+        <p>${category.subtitle}</p>
+
+        <p>${category.description}</p>
+
+        <span class="card-link">
+          探索本类别 →
+        </span>
+      `;
+
+      categoryGrid.appendChild(card);
+
+    });
+  </script>
+
+</body>
+</html>

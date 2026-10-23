@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>纹样分类｜纹见东方</title>
+
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+  <!-- 顶部导航 -->
+  <header class="site-header">
+    <div class="container nav">
+
+      <a href="index.html" class="logo">
+        <span class="logo-mark">纹</span>
+        <span>纹见东方</span>
+      </a>
+
+      <nav class="nav-links">
+        <a href="index.html">首页</a>
+        <a href="catalog.html" class="active">纹样图鉴</a>
+        <a href="studio.html">创作工坊</a>
+      </nav>
+
+    </div>
+  </header>
+
+
+  <!-- 页面标题 -->
+  <section class="page-hero">
+    <div class="container">
+
+      <div class="eyebrow">PATTERN COLLECTION</div>
+
+      <h1 class="page-title" id="categoryTitle">
+        纹样分类
+      </h1>
+
+      <p class="page-desc" id="categoryDescription">
+        探索中国传统纹样的形态与装饰之美。
+      </p>
+
+    </div>
+  </section>
+
+
+  <!-- 纹样列表 -->
+  <main class="section">
+    <div class="container">
+
+      <div class="breadcrumb">
+        <a href="index.html">首页</a>
+        /
+        <a href="catalog.html">纹样图鉴</a>
+        /
+        <span id="breadcrumbName">纹样分类</span>
+      </div>
+
+      <div class="section-heading">
+        <h2>本类纹样</h2>
+        <p>选择你感兴趣的纹样，了解它的形态特征。</p>
+      </div>
+
+      <div class="pattern-grid" id="patternGrid">
+        <!-- 纹样卡片由 JavaScript 自动生成 -->
+      </div>
+
+      <div class="empty-state" id="emptyMessage" hidden>
+        暂时没有找到这个类别，请返回纹样图鉴重新选择。
+        <br><br>
+        <a href="catalog.html" class="btn btn-outline">
+          返回纹样图鉴
+        </a>
+      </div>
+
+      <div style="text-align:center; margin-top:36px;">
+        <a href="catalog.html" class="btn btn-outline">
+          ← 返回全部类别
+        </a>
+      </div>
+
+    </div>
+  </main>
+
+
+  <!-- 页脚 -->
+  <footer class="site-footer">
+    <div class="container">
+      纹见东方 · 中国传统纹样数字创意平台
+    </div>
+  </footer>
+
+
+  <!-- 载入数据 -->
+  <script src="js/data.js"></script>
+
+  <script>
+    // 读取网址中的类别编号
+    const params = new URLSearchParams(window.location.search);
+    const categoryId = params.get("id");
+
+    // 查找对应类别
+    const category = getCategoryById(categoryId);
+
+    const titleElement = document.getElementById("categoryTitle");
+    const descriptionElement = document.getElementById("categoryDescription");
+    const breadcrumbElement = document.getElementById("breadcrumbName");
+    const patternGrid = document.getElementById("patternGrid");
+    const emptyMessage = document.getElementById("emptyMessage");
+
+    if (category) {
+
+      // 更新页面标题和介绍
+      document.title = category.name + "｜纹见东方";
+
+      titleElement.textContent = category.name;
+      descriptionElement.textContent = category.description;
+      breadcrumbElement.textContent = category.name;
+
+      // 生成该类别下的纹样卡片
+      category.patterns.forEach((pattern, index) => {
+
+        const card = document.createElement("a");
+
+        card.className = "pattern-card";
+
+        // 点击纹样后进入详情页
+        card.href =
+          "detail.html?id=" +
+          encodeURIComponent(pattern.id);
+
+        card.innerHTML = `
+          <div class="pattern-art">
+            ${pattern.symbol}
+          </div>
+
+          <div class="pattern-info">
+            <h3>${pattern.name}</h3>
+
+            <p>${pattern.description}</p>
+
+            <span class="card-link">
+              查看纹样详情 →
+            </span>
+          </div>
+        `;
+
+        patternGrid.appendChild(card);
+
+      });
+
+    } else {
+
+      // 类别编号不存在时显示提示
+      patternGrid.hidden = true;
+      emptyMessage.hidden = false;
+
+      titleElement.textContent = "暂未找到该类别";
+      descriptionElement.textContent =
+        "请返回纹样图鉴，重新选择一个类别。";
+
+      breadcrumbElement.textContent = "未找到类别";
+
+    }
+  </script>
+
+</body>
+</html>
